@@ -287,5 +287,5 @@ Git is an essential tool for version control in software development. This guide
 
 ---
 
-*Prepared for by **Kotireddy*** 🚀  
+*Prepared  by **Kotireddy*** 🚀  
 **#Git #DevOps #VersionControl #InterviewPreparation**
