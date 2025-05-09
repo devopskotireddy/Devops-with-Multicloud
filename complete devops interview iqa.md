@@ -3,7 +3,7 @@ This document covers topics from basic to advanced levels. Kindly ensure you pra
 
 Note: If you have any questions, feel free to reach out at devopskotireddy@gmail.com.
 
-For AWS Cloud tutorials, please visit: CloudOps-K YouTube Channel.
+For AWS Cloud tutorials, please visit: https://www.youtube.com/@cloudops-k
 
 ========Linux=======
 
