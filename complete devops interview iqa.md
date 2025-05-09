@@ -684,6 +684,285 @@ This document provides detailed explanations and commands for common Git and Git
   ```
 
 ---
+====================================================================
+
+1. I have 1 production server. Suddenly that server is not responding, but you are trying to SSH that server from your local. After logging in successfully, you noticed so and so disk is taking 100%, disk is full, that is the reason why system is slow. How can you resolve it?
+
+2. I deployed an application into the server, application is not responding (as a DevOps Engineer you already having server access). I deployed that microservice, but I am not able to get my application as expected. UI is getting slow. How can you debug and troubleshoot?
+
+3. My website `httpd` service is failing to start, that service got failed. How will you troubleshoot?
+
+4. My `crontab` is not working. I configured properly. What can we do now?
+5. People are trying to SSH the server, they entered wrong password & getting errors after multiple attempts. Those logs in /var/log/secure file.inside that file we are having logs and ip addresses, IP-Addresses is in 11th column. What are the failed SSH attempts, and how do you list only failed IPs?
+6. If I delete the root directory by mistake via `rm -rf /`, how can we recover it or what will happen?
+
+7. DevOps engineer wrote a script to delete something. How do you prevent accidental deletion?
+(Example: add confirmation like `Are you sure?`)
+
+8. We have log file and want to filter 2 errors - one is `404 error`, another is `500 internal server error`. How to get that data?
+
+9. My disk is full. Which folder is taking the most memory? How to find which folders?
+
+10. I am giving a string input in shell script, how to display the characters one by one?
+
+11. In a shell script, how do you check if the user executing the script has sudo permissions or not?
+
+12. I want to Terminate some processes, How can you do that?
+
+13. What is the difference between soft link and hard link in Linux?
+
+14. By mistakenly a user deletes an important file. How to recover it?
+
+15. Can you please Explain some scenarios where did you used grep, sed and awk commands in your project?
+
+16. Explain the Git life-cycle flow.
+
+17. Can you please explain the Linux directory structure?
+
+18. How can you delete a branch in remote repository from CLI?
+
+19. Difference between `git reset` and `git revert`?
+
+20. Explain what are the branches are there and what are the branching strategies in your project?
+
+21. How can you delete the branch in remote repository from CLI ?
+
+22. Difference between Git & GitHub ?
+
+23. Explain difference between Branch & Tag, where did you used in your project ?
+
+24. Difference between Git fetch & pull, where did you used in your project ?
+
+25. By mistakenly i did wrong commit, How to delete that ?
+
+26. What is your task in GitHub daily, what you will do in git on daily basis ?
+
+
+27. What are the challenges you are facing daily in Git ?
+# **Challenges Faced Daily in Git**
+
+As a DevOps Engineer, working with Git on a daily basis involves several challenges, both technical and collaboration-related. Below are some common challenges and their solutions.
+
+---
+
+## **1. Merge Conflicts**
+- **Challenge:**
+  - Conflicts arise when multiple developers work on the same file or section of code and attempt to merge changes.
+- **Solution:**
+  - Pull changes frequently using `git pull` to stay updated.
+  - Resolve conflicts manually by editing the files and removing conflict markers (`<<<<<<`, `======`, `>>>>>>`).
+  - After resolving, mark the conflicts as resolved:
+    ```bash
+    git add <file>
+    git commit
+    ```
+
+---
+
+## **2. Accidental Commits or Pushes**
+- **Challenge:**
+  - Accidentally committing sensitive data or incorrect changes to the repository.
+- **Solution:**
+  - Undo the commit before pushing:
+    ```bash
+    git reset --soft HEAD~1
+    ```
+  - If already pushed, use:
+    ```bash
+    git revert <commit-id>
+    git push --force
+    ```
+
+---
+
+## **3. Branch Management**
+- **Challenge:**
+  - Managing multiple branches and ensuring proper branching strategies.
+- **Solution:**
+  - Follow a branching strategy like Git Flow:
+    - **Feature Branches:** For new features.
+    - **Hotfix Branches:** For critical fixes.
+    - **Release Branches:** For preparing releases.
+  - Use meaningful branch names like `feature/add-login` or `bugfix/fix-crash`.
+
+---
+
+## **4. Forgotten or Incorrect Commit Messages**
+- **Challenge:**
+  - Writing unclear or incorrect commit messages makes it hard to track changes.
+- **Solution:**
+  - Fix the last commit message using:
+    ```bash
+    git commit --amend
+    ```
+  - If already pushed, use:
+    ```bash
+    git push --force
+    ```
+
+---
+
+## **5. Debugging the History**
+- **Challenge:**
+  - Identifying when and where a bug or issue was introduced in the codebase.
+- **Solution:**
+  - Use `git log` to review the commit history.
+  - Use `git bisect` to isolate the commit causing the issue:
+    ```bash
+    git bisect start
+    git bisect bad
+    git bisect good <commit-id>
+    ```
+
+---
+
+## **6. Handling Large Files**
+- **Challenge:**
+  - Pushing or handling large files in the repository can slow down Git operations.
+- **Solution:**
+  - Use `.gitignore` to exclude unnecessary files.
+  - Use Git LFS (Large File Storage) for managing large files.
+
+---
+
+## **7. Rewriting Commit History**
+- **Challenge:**
+  - Rewriting history (e.g., with `git rebase`) in shared branches can cause conflicts or data loss.
+- **Solution:**
+  - Avoid rewriting history in shared branches.
+  - Communicate with the team before performing a rebase.
+
+---
+
+## **8. Stale or Forgotten Branches**
+- **Challenge:**
+  - Accumulation of old branches clutters the repository.
+- **Solution:**
+  - Regularly delete merged branches:
+    - Locally:
+      ```bash
+      git branch -d <branch-name>
+      ```
+    - Remotely:
+      ```bash
+      git push origin --delete <branch-name>
+      ```
+
+---
+
+## **9. Code Reviews and Collaboration**
+- **Challenge:**
+  - Delays in code reviews and ensuring team members follow Git best practices.
+- **Solution:**
+  - Use pull requests for code reviews to ensure quality.
+  - Automate checks with tools like GitHub Actions or CI/CD pipelines.
+
+---
+
+## **10. Permissions and Access Control**
+- **Challenge:**
+  - Ensuring team members have the right permissions to the repository.
+- **Solution:**
+  - Use GitHub Teams to manage permissions and enforce access control.
+
+---
+
+## **Real-World Example**
+- **Scenario:** After merging a feature branch into `main`, the build starts failing due to a missing function.
+- **Solution:**
+  - Use `git log` or `git blame` to identify the problematic commit.
+  - Fix the issue by reverting or applying a patch:
+    ```bash
+    git revert <commit-id>
+    ```
+
+---
+
+By addressing these challenges systematically, you can ensure a smoother Git workflow and avoid common pitfalls.
+
+
+
+
+28. A scheduled backup script in crontab isn’t running. How do you debug it?
+answer;
+Debugging a Scheduled Backup Script in Crontab
+Verify Crontab Entry:
+
+Check if the backup script is correctly scheduled.
+Use the command:
+bash
+crontab -l
+Example entry:
+Code
+0 2 * * * /path/to/backup_script.sh
+Check Crontab Service:
+
+Ensure the cron service is running.
+bash
+sudo systemctl status cron
+If it’s not running, start it:
+bash
+sudo systemctl start cron
+Check Script Permissions:
+
+The script must be executable.
+bash
+chmod +x /path/to/backup_script.sh
+Redirect Output to a Log File:
+
+Update the crontab entry to capture errors:
+Code
+0 2 * * * /path/to/backup_script.sh > /path/to/cron.log 2>&1
+After the scheduled time, check the log file:
+bash
+cat /path/to/cron.log
+Check Cron Logs:
+
+Look for cron job activity in system logs:
+bash
+sudo grep CRON /var/log/syslog
+Manually Run the Script:
+
+Run the script manually to see if it works:
+bash
+/path/to/backup_script.sh
+Add Environment Variables (if needed):
+
+Cron runs in a limited shell. Add paths if required:
+bash
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+
+Real time example:
+
+You’ve scheduled a backup script at 2 AM, but it’s not running.
+After checking, you find:
+The cron service was stopped. You started it using sudo systemctl start cron.
+The script had no execute permissions. You fixed it using chmod +x.
+The script had missing dependencies. You added the correct PATH to the crontab.
+Solution: After fixing these issues, the script ran successfully at the next scheduled time.
+
+29. Whenever I am trying to connect my server through ssh, i am not able to connect, what might be the reason? How can you Debug ?
+1. Check Network Connectivity
+2. Verify SSH Service on the Server
+3. Check SSH Configuration client / server side
+4. Verify Firewall Rules
+5. Check for IP Restrictions
+6. Verify SSH Key or Password
+
+30. I am having 1 static string, I want to revert that staric String can you please write a sample shell script?
+.answer
+#!/bin/bash
+
+# Define the static string
+static_string="your_static_string_here"
+
+# Reverse the string using rev command
+reversed_string=$(echo "$static_string" | rev)
+
+# Print the reversed string
+echo "Original String: $static_string"
+echo "Reversed String: $reversed_string"
 
 
 **#Git #GitHub #VersionControl #DevOpsPreparation**
